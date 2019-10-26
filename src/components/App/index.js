@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import Data from "../../data/dishes";
 import { Global } from "@emotion/core";
 import {
-  Row,
   MultiStepWrapper,
   Header,
   Img,
@@ -11,17 +10,14 @@ import {
   ButtonWrapper,
   NavButtons,
   SubmitButton,
-  DishResultWrapper,
-  ResultsWrapper,
-  Inherit,
-  ResultsMain
+  Inherit
 } from "../Universal/Style";
 import AppLogo from "../../inc/img/app-logo.png";
 
 import Step1 from "../Step1";
 import Step2 from "../Step2";
 import Step3 from "../Step3";
-import Step4 from "../Step4";
+import Step4, { Results } from "../Step4";
 
 const INITIAL_STATE = {
   submitted: false,
@@ -208,7 +204,7 @@ class App extends Component {
 
     return (
       <MultiStepWrapper>
-        <div>
+        <div className="wrapper-optimise">
           <Global styles={Inherit} />
           <Header>
             <Img src={AppLogo} alt="pre order app logo" />
@@ -294,46 +290,13 @@ class App extends Component {
               <p className="results submission-text">
                 Your order has been submitted on {date.toDateString()}
               </p>
-              <ResultsWrapper>
-                <h3 className="h3-submitted">Order Copy</h3>
-                <ResultsMain>
-                  <Row>
-                    <h4 className="result-heading h4-submitted">Meal</h4>
-                    <p className="results">{mealType}</p>
-                  </Row>
-                  <Row>
-                    <h4 className="result-heading h4-submitted">
-                      No. of people
-                    </h4>
-                    <p className="results">{people}</p>
-                  </Row>
-                  <Row>
-                    <h4 className="result-heading h4-submitted">Restaurant</h4>
-                    <p className="results">{selectRestaurant}</p>
-                  </Row>
-                </ResultsMain>
-                <div>
-                  <h4 className="result-heading">
-                    Chosen dishes - {dish.length}
-                  </h4>
-                  {dish.map((dishObject, i) => (
-                    <DishResultWrapper key={i}>
-                      <div className="result-dish-separator">
-                        <h5 className="sub-heading-dish">Dish Name:</h5>
-                        <p className="results chosen-results">
-                          {dishObject.dishName}
-                        </p>
-                      </div>
-                      <div className="result-dish-separator">
-                        <h5 className="sub-heading-dish">Servings:</h5>
-                        <p className="results chosen-results">
-                          {dishObject.servings}
-                        </p>
-                      </div>
-                    </DishResultWrapper>
-                  ))}
-                </div>
-              </ResultsWrapper>
+              <Results
+                heading={"order-submit"}
+                mealType={mealType}
+                people={people}
+                selectRestaurant={selectRestaurant}
+                dish={dish}
+              />
             </Fragment>
           )}
         </div>

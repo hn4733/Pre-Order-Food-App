@@ -82,6 +82,22 @@ export const Header = styled.div`
   display: flex;
   margin-bottom: 20px;
   align-items: center;
+
+  @media (max-width: 634px) {
+    flex: 0 0 100%;
+  }
+  @media (max-width: 382px) {
+    display: block;
+    text-align: center;
+
+    img {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+    }
+  }
 `;
 export const Img = styled.img`
   width: 87px;
@@ -95,14 +111,47 @@ export const Flex = styled.div`
 `;
 
 // Results
+export const ResultsWrapper = styled.div`
+  margin-bottom: 20px;
+
+  @media (max-width: 634px) {
+    width: 100%;
+
+    .chosen-heading {
+      font-size: 19px;
+    }
+  }
+`;
 export const ResultsMain = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 500px) {
+    flex-flow: row wrap;
+  }
 `;
 export const Row = styled.div`
   border-radius: 4px;
   padding: 0px 17px;
   text-align: center;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex: 0 0 100%;
+    padding: 0;
+    text-align: left;
+    flex-flow: row wrap;
+
+    .result-heading {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 13px;
+      font-size: 19px;
+    }
+    .results {
+      margin-top: 0;
+    }
+  }
 `;
 
 // Multi-step form
@@ -110,6 +159,23 @@ export const MultiStepWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 40px 0;
+
+  @media (max-width: 634px) {
+    display: block;
+    width: auto;
+    margin: 40px auto;
+    max-width: 100%;
+    padding: 0 10px;
+
+    .wrapper-optimise {
+      display: flex;
+      flex-flow: row wrap;
+
+      form {
+        width: 100%;
+      }
+    }
+  }
 `;
 export const StepWrapper = styled.div`
   display: flex;
@@ -117,6 +183,14 @@ export const StepWrapper = styled.div`
   margin-bottom: 40px;
   width: 549px;
   max-width: 100%;
+
+  @media (max-width: 634px) {
+    width: auto;
+    flex: 0 0 100%;
+  }
+  @media (max-width: 382px) {
+    margin-bottom: 30px;
+  }
 `;
 export const TheStep = styled.div`
   display: flex;
@@ -132,6 +206,15 @@ export const TheStep = styled.div`
   border-top: 4px solid ${props => (props.active ? "#f6a720" : "#505050")};
   background-color: ${props => (props.active ? "#424c58" : "lightgray")};
   color: ${props => (props.active ? "white" : "black")};
+
+  @media (max-width: 634px) {
+    border-radius: 0;
+    width: 140px;
+  }
+  @media (max-width: 382px) {
+    font-size: 15px;
+    height: 19px;
+  }
 `;
 export const SelectDishWrapper = styled.div`
   margin-bottom: 10px;
@@ -146,9 +229,6 @@ export const DishResultWrapper = styled.div`
   padding: 5px 15px;
   margin-bottom: 7px;
   border-radius: 3px;
-`;
-export const ResultsWrapper = styled.div`
-  margin-bottom: 20px;
 `;
 
 // Inputs and Selects
