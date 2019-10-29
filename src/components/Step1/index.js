@@ -1,16 +1,17 @@
 import React, { Fragment } from "react";
-import { Select, InputNumber } from "../Universal/Style";
+import { Select } from "../Universal/Style";
 
 const Step1 = ({
   currentStep,
   mealType,
   people,
-  onChange,
+  onChangeFn,
   mealTypeError,
   peopleError
 }) => {
   if (currentStep === 1) {
     const selectOptions = ["breakfast", "lunch", "dinner"];
+    const selectPeopleOptions = Array.from({ length: 10 });
     return (
       <Fragment>
         <h2>Meal type selection</h2>
@@ -19,7 +20,7 @@ const Step1 = ({
           className="mealSelect"
           name="mealType"
           value={mealType}
-          onChange={onChange}
+          onChange={onChangeFn}
         >
           <option disabled value="Select meal type">
             Select meal type
@@ -30,23 +31,32 @@ const Step1 = ({
             </option>
           ))}
         </Select>
-        {mealTypeError.length > 0 && (
-          <p className="notification-error">{mealTypeError}</p>
-        )}
 
         <h4>Select number of people</h4>
-        <InputNumber
+        <Select
           className="numberInput"
-          type="number"
           name="people"
           value={people}
-          onChange={onChange}
-          min="0"
-          max="10"
-          step="0.5"
-        />
+          onChange={onChangeFn}
+        >
+          <option disabled value="0">
+            0
+          </option>
+          {selectPeopleOptions.map((_, i) => (
+            <option key={i} value={i + 1}>
+              {i + 1}
+            </option>
+          ))}
+        </Select>
+        {mealTypeError.length > 0 && (
+          <p className="notification-error" style={{ marginBottom: "7px" }}>
+            {mealTypeError}
+          </p>
+        )}
         {peopleError.length > 0 && (
-          <p className="notification-error">{peopleError}</p>
+          <p className="notification-error" style={{ marginTop: "0" }}>
+            {peopleError}
+          </p>
         )}
       </Fragment>
     );

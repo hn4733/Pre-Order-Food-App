@@ -2,22 +2,30 @@ import React, { Component, Fragment } from "react";
 import Data from "../../data/dishes";
 import { Global } from "@emotion/core";
 import {
-  MultiStepWrapper,
   Header,
   Img,
+  MultiStepWrapper,
   StepWrapper,
   TheStep,
   ButtonWrapper,
   NavButtons,
-  SubmitButton,
-  Inherit
-} from "../Universal/Style";
+  SubmitButton
+} from "./Style";
+import { Inherit } from "../Universal/Style";
 import AppLogo from "../../inc/img/app-logo.png";
 
 import Step1 from "../Step1";
 import Step2 from "../Step2";
 import Step3 from "../Step3";
 import Step4, { Results } from "../Step4";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faStore,
+  faHamburger,
+  faClipboard
+} from "@fortawesome/free-solid-svg-icons";
 
 const INITIAL_STATE = {
   submitted: false,
@@ -120,10 +128,12 @@ class App extends Component {
 
     if (currentStep === 1) {
       if (mealType === "Select meal type" || people === 0) {
-        if (mealType === "Select meal type")
+        if (mealType === "Select meal type") {
           this.setState({ mealTypeError: "Please select a meal type" });
-        if (people === 0)
+        }
+        if (people === 0) {
           this.setState({ peopleError: "Please select number of people" });
+        }
         errors = true;
       } else {
         this.setState({ mealTypeError: "" });
@@ -196,7 +206,12 @@ class App extends Component {
     } = this.state;
     const date = new Date();
     const { dishes } = Data;
-    const steps = ["Step 1", "Step 2", "Step 3", "Review"];
+    const steps = [
+      { name: "Meal Type", icon: faUtensils },
+      { name: "Restaurant", icon: faStore },
+      { name: "Dish", icon: faHamburger },
+      { name: "Review", icon: faClipboard }
+    ];
     let active = false;
     let newRestaurantData = new Set();
     dishes.forEach(dishInfo => newRestaurantData.add(dishInfo.restaurant));
@@ -218,7 +233,12 @@ class App extends Component {
               }
               return (
                 <TheStep className="the-steps-header" key={i} active={active}>
-                  {step}
+                  <FontAwesomeIcon
+                    size="1x"
+                    icon={step.icon}
+                    style={{ height: "17px" }}
+                  />
+                  <div className="the-text">{step.name}</div>
                 </TheStep>
               );
             })}
@@ -229,7 +249,7 @@ class App extends Component {
                 currentStep={currentStep}
                 mealType={mealType}
                 people={people}
-                onChange={this.onChange}
+                onChangeFn={this.onChange}
                 mealTypeError={mealTypeError}
                 peopleError={peopleError}
               />

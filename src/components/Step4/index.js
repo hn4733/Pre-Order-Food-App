@@ -1,10 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  Row,
-  DishResultWrapper,
-  ResultsWrapper,
-  ResultsMain
-} from "../Universal/Style";
+import { Row, DishResultWrapper, ResultsWrapper, ResultsMain } from "./Style";
 
 const Step4 = ({ currentStep, mealType, people, selectRestaurant, dish }) => {
   if (currentStep === 4) {

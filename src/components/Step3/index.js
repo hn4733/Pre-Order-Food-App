@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
 import {
   Flex,
-  Select,
-  InputNumber,
   AddRemoveButtons,
   SelectDishWrapper,
   SelectInnerWrapper
-} from "../Universal/Style";
+} from "./Style";
+import { Select } from "../Universal/Style";
 
 const Step3 = ({
   data,
@@ -26,6 +25,7 @@ const Step3 = ({
         dataInfo.availableMeals.includes(mealType)
       );
     });
+    const selectServingsOptions = Array.from({ length: 10 });
     const dishChecker = dish.some(dishInfo => {
       return dishInfo.dishName === "Please select a dish";
     });
@@ -67,15 +67,18 @@ const Step3 = ({
                   </Select>
 
                   <h4>Select number of serving(s)</h4>
-                  <InputNumber
-                    type="number"
+                  <Select
+                    className="numberInput"
                     name="servings"
-                    value={dishObject.servings || 1}
-                    min="1"
-                    max="10"
+                    value={dishObject.servings}
                     onChange={e => updateDishState(e, i)}
-                    step="0.5"
-                  />
+                  >
+                    {selectServingsOptions.map((_, i) => (
+                      <option key={i} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </Select>
                 </SelectInnerWrapper>
                 {dish.length > 1 && (
                   <Flex>
