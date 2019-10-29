@@ -13,6 +13,7 @@ import {
 } from "./Style";
 import { Inherit } from "../Universal/Style";
 import AppLogo from "../../inc/img/app-logo.png";
+import FoodCharacter from "../../inc/img/food-character.png";
 
 import Step1 from "../Step1";
 import Step2 from "../Step2";
@@ -319,6 +320,11 @@ class App extends Component {
               />
             </Fragment>
           )}
+          <img
+            className="food-character"
+            src={FoodCharacter}
+            alt="food character"
+          />
         </div>
       </MultiStepWrapper>
     );

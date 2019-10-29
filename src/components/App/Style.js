@@ -36,9 +36,17 @@ export const MultiStepWrapper = styled.div`
   margin: 40px 0;
 
   .wrapper-optimise {
+    position: relative;
     background-color: rgba(255, 255, 255, 0.9);
     padding: 30px 70px;
     border-radius: 8px;
+
+    .food-character {
+      position: absolute;
+      bottom: 0;
+      right: -20px;
+      width: 70px;
+    }
   }
 
   @media (max-width: 634px) {
@@ -55,6 +63,10 @@ export const MultiStepWrapper = styled.div`
 
       form {
         width: 100%;
+      }
+
+      .food-character {
+        display: none;
       }
     }
   }
