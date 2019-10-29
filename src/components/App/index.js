@@ -9,7 +9,8 @@ import {
   TheStep,
   ButtonWrapper,
   NavButtons,
-  SubmitButton
+  SubmitButton,
+  Copyright
 } from "./Style";
 import { Inherit } from "../Universal/Style";
 import AppLogo from "../../inc/img/app-logo.png";
@@ -219,114 +220,131 @@ class App extends Component {
     const newRestaurantDataArray = Array.from(newRestaurantData);
 
     return (
-      <MultiStepWrapper>
-        <div className="wrapper-optimise">
-          <Global styles={Inherit} />
-          <Header>
-            <Img src={AppLogo} alt="pre order app logo" />
-            <h1>Pre Order Food</h1>
-          </Header>
-          <StepWrapper>
-            {steps.map((step, i) => {
-              active = false;
-              if (i < currentStep || i === 0) {
-                active = true;
-              }
-              return (
-                <TheStep className="the-steps-header" key={i} active={active}>
-                  <FontAwesomeIcon
-                    size="1x"
-                    icon={step.icon}
-                    style={{ height: "17px" }}
-                  />
-                  <div className="the-text">{step.name}</div>
-                </TheStep>
-              );
-            })}
-          </StepWrapper>
-          {!submitted ? (
-            <form method="post" onSubmit={event => this.onSubmit(event)}>
-              <Step1
-                currentStep={currentStep}
-                mealType={mealType}
-                people={people}
-                onChangeFn={this.onChange}
-                mealTypeError={mealTypeError}
-                peopleError={peopleError}
-              />
-              <Step2
-                data={newRestaurantDataArray}
-                currentStep={currentStep}
-                selectRestaurant={selectRestaurant}
-                onChange={this.onChange}
-                restaurantError={restaurantError}
-              />
-              <Step3
-                data={dishes}
-                currentStep={currentStep}
-                dish={dish}
-                mealType={mealType}
-                selectRestaurant={selectRestaurant}
-                updateDishState={this.updateDishState}
-                addAnotherDish={this.addAnotherDish}
-                removeDish={this.removeDish}
-                dishError={dishError}
-              />
-              <Step4
-                data={dishes}
-                currentStep={currentStep}
-                mealType={mealType}
-                people={people}
-                selectRestaurant={selectRestaurant}
-                dish={dish}
-              />
+      <Fragment>
+        <MultiStepWrapper>
+          <div className="wrapper-optimise">
+            <Global styles={Inherit} />
+            <Header>
+              <Img src={AppLogo} alt="pre order app logo" />
+              <h1>Pre Order Food</h1>
+            </Header>
+            <StepWrapper>
+              {steps.map((step, i) => {
+                active = false;
+                if (i < currentStep || i === 0) {
+                  active = true;
+                }
+                return (
+                  <TheStep className="the-steps-header" key={i} active={active}>
+                    <FontAwesomeIcon
+                      size="1x"
+                      icon={step.icon}
+                      style={{ height: "17px" }}
+                    />
+                    <div className="the-text">{step.name}</div>
+                  </TheStep>
+                );
+              })}
+            </StepWrapper>
+            {!submitted ? (
+              <form method="post" onSubmit={event => this.onSubmit(event)}>
+                <Step1
+                  currentStep={currentStep}
+                  mealType={mealType}
+                  people={people}
+                  onChangeFn={this.onChange}
+                  mealTypeError={mealTypeError}
+                  peopleError={peopleError}
+                />
+                <Step2
+                  data={newRestaurantDataArray}
+                  currentStep={currentStep}
+                  selectRestaurant={selectRestaurant}
+                  onChange={this.onChange}
+                  restaurantError={restaurantError}
+                />
+                <Step3
+                  data={dishes}
+                  currentStep={currentStep}
+                  dish={dish}
+                  mealType={mealType}
+                  selectRestaurant={selectRestaurant}
+                  updateDishState={this.updateDishState}
+                  addAnotherDish={this.addAnotherDish}
+                  removeDish={this.removeDish}
+                  dishError={dishError}
+                />
+                <Step4
+                  data={dishes}
+                  currentStep={currentStep}
+                  mealType={mealType}
+                  people={people}
+                  selectRestaurant={selectRestaurant}
+                  dish={dish}
+                />
 
-              <ButtonWrapper>
-                {currentStep > 1 && (
-                  <NavButtons
-                    className="buttons previousButton"
-                    onClick={() => this.prevStep(currentStep)}
-                  >
-                    Previous
-                  </NavButtons>
-                )}
-                {currentStep < 4 && (
-                  <NavButtons
-                    className="buttons nextButton"
-                    onClick={() => this.nextStep(currentStep)}
-                  >
-                    Next
-                  </NavButtons>
-                )}
-                {currentStep === 4 && (
-                  <SubmitButton className="buttons submitButton" type="submit">
-                    Submit
-                  </SubmitButton>
-                )}
-              </ButtonWrapper>
-            </form>
-          ) : (
-            <Fragment>
-              <h2>Order Successfully Submitted</h2>
-              <p className="results submission-text">
-                Your order has been submitted on {date.toDateString()}
-              </p>
-              <Results
-                heading={"order-submit"}
-                mealType={mealType}
-                people={people}
-                selectRestaurant={selectRestaurant}
-                dish={dish}
-              />
-            </Fragment>
-          )}
-          <img
-            className="food-character"
-            src={FoodCharacter}
-            alt="food character"
-          />
-        </div>
-      </MultiStepWrapper>
+                <ButtonWrapper>
+                  {currentStep > 1 && (
+                    <NavButtons
+                      className="buttons previousButton"
+                      onClick={() => this.prevStep(currentStep)}
+                    >
+                      Previous
+                    </NavButtons>
+                  )}
+                  {currentStep < 4 && (
+                    <NavButtons
+                      className="buttons nextButton"
+                      onClick={() => this.nextStep(currentStep)}
+                    >
+                      Next
+                    </NavButtons>
+                  )}
+                  {currentStep === 4 && (
+                    <SubmitButton
+                      className="buttons submitButton"
+                      type="submit"
+                    >
+                      Submit
+                    </SubmitButton>
+                  )}
+                </ButtonWrapper>
+              </form>
+            ) : (
+              <Fragment>
+                <h2>Order Successfully Submitted</h2>
+                <p className="results submission-text">
+                  Your order has been submitted on {date.toDateString()}
+                </p>
+                <Results
+                  heading={"order-submit"}
+                  mealType={mealType}
+                  people={people}
+                  selectRestaurant={selectRestaurant}
+                  dish={dish}
+                />
+              </Fragment>
+            )}
+            <img
+              className="food-character"
+              src={FoodCharacter}
+              alt="food character"
+            />
+            <Copyright>
+              <span>
+                App created by{" "}
+                <a
+                  href="https://henrynguyen.design"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  HN Design
+                </a>
+              </span>
+            </Copyright>
+          </div>
+        </MultiStepWrapper>
+      </Fragment>
     );
   }
 }

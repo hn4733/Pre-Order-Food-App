@@ -149,3 +149,26 @@ export const NavButtons = styled.div`
 export const SubmitButton = styled.button`
   ${buttonCopy};
 `;
+
+export const Copyright = styled.div`
+  position: absolute;
+  right: -210px;
+  bottom: 20px;
+  padding: 10px 15px 10px 5px;
+  background-color: white;
+
+  span {
+    color: black;
+    font-family: "Roboto Condensed", sans-serif;
+
+    a {
+      color: black;
+      text-decoration: none;
+      font-family: $roboto-font;
+
+      &:hover {
+        color: gray;
+      }
+    }
+  }
+`;
