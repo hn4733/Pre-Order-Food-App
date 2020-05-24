@@ -334,11 +334,11 @@ class App extends Component {
               <span>
                 App created by{" "}
                 <a
-                  href="https://henrynguyen.design"
+                  href="https://hnbuilds.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  HN Design
+                  HN Builds
                 </a>
               </span>
             </Copyright>
